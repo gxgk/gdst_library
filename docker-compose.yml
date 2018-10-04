@@ -3,7 +3,7 @@ services:
   app:
     container_name: gdst_library
     build: .
-    command: gunicorn -c gunicorn.py app:app
+    command: gunicorn -c gunicorn.py serve:app
     environment:
       - FLASK_APP=app.py
     ports:
