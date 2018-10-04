@@ -7,7 +7,7 @@ services:
     environment:
       - FLASK_APP=app.py
     ports:
-      - "7000:5000"
+      - "7000:7000"
     volumes:
       - .:/var/www/gdst_library
     network_mode: bridge
