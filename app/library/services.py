@@ -4,7 +4,6 @@ import logging
 import base64
 import requests
 from bs4 import BeautifulSoup
-from urllib import parse
 
 logger = logging.getLogger(__name__)
 
@@ -50,13 +49,13 @@ def search_book(keyword, page, book_type=1):
 
             book_detail = book.find_all('p')
             author = book_detail[0].getText().strip()
-            press = book_detail[1].getText().strip()
-            pub_year = book_detail[2].getText().strip()
+            publishing_house = book_detail[1].getText().strip()
+            index = book_detail[2].getText().strip()
             data = {
                 'title': title,
                 'author': author.replace("作者：", ""),
-                'press': press[4:],
-                'pub_year': pub_year[4:],
+                'publishing_house': publishing_house.replace("出版社：", ""),
+                'index': index.replace("索书号：", ""),
                 'url': base64_encode(detail_url)
             }
             book_info.append(data)

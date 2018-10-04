@@ -1,0 +1,14 @@
+version: "3"
+services:
+  app:
+    container_name: gdst_library
+    build: .
+    command: gunicorn -c gunicorn.py serve:app
+    environment:
+      - FLASK_APP=app.py
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/var/www/gdst_library
+    network_mode: bridge
+
