@@ -9,7 +9,7 @@
 - [x] gunicorn多进程部署
 - [x] 仅提供API
 
-### 部署方法
+### 调试部署方法
 
 ```
 cp config.py.default config.py
@@ -20,3 +20,7 @@ export FLASK_APP=serve.py
 export FLASK_ENV = development
 flask run
 ```
+
+### Docker部署方法
+
+略，用过docker的人都知道
