@@ -1,1 +1,2 @@
-LIBRARY_SEARCH_URL = "http://opac.gdst.cc:8090/search/list.action"
+LIBRARY_HOST = "http://opac.gdst.cc:8090"
+LIBRARY_SEARCH_URL = LIBRARY_HOST + "/search/list.action"
