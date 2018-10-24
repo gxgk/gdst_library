@@ -1,19 +1,19 @@
 import re
+from urllib import parse
 import config
 import logging
-import base64
 import requests
 from bs4 import BeautifulSoup
 
 logger = logging.getLogger(__name__)
 
 
-def base64_encode(text):
-    return bytes.decode(base64.b64encode(str.encode(text)))
+def url_encode(text):
+    return parse.quote(text)
 
 
-def base64_decode(text):
-    return bytes.decode(base64.b64decode(str.encode(text)))
+def url_decode(text):
+    return parse.unquote(text)
 
 
 def search_book(keyword, page, book_type=1):
@@ -60,7 +60,7 @@ def search_book(keyword, page, book_type=1):
                 'author': author.replace("作者：", ""),
                 'publishing_house': publishing_house.replace("出版社：", ""),
                 'index': index.replace("索书号：", ""),
-                'url': base64_encode(detail_url)
+                'url': url_encode(detail_url)
             }
             book_info.append(data)
         data = {'rows': book_info, 'total': num}
@@ -68,7 +68,7 @@ def search_book(keyword, page, book_type=1):
 
 
 def get_book_detail(endpoint):
-    url = '%s%s' % (config.LIBRARY_HOST, base64_decode(endpoint))
+    url = '%s%s' % (config.LIBRARY_HOST, url_decode(endpoint))
     try:
         res = requests.get(url, timeout=10)
     except Exception as e:
