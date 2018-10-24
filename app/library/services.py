@@ -86,16 +86,16 @@ def get_book_detail(endpoint):
         for book in list_book:
             book_name = book.find(class_="titBox").find("p").getText()
             book_one = book.find(class_="tableCon").find_all("tr")
-            # 索书号
-            callno = book_one[0].find('td').getText()
             # 条码号
             barcode = book_one[1].find('td').getText()
+            # 索书号
+            callno = book_one[0].find('td').getText()
             # 登录号
             access_num = book_one[2].find('td').getText()
-            # 藏书部门
-            collect_dept = book_one[3].find('td').getText()
             # 流通状态
             status = book_one[4].find('td').getText()
+            # 藏书部门
+            collect_dept = book_one[3].find('td').getText()
             # 应还日期
             deadline = book_one[5].find('td').getText()
             data = {
