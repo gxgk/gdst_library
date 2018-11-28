@@ -31,7 +31,7 @@ def search_book(keyword, page, book_type=1):
         "page": page
     }
     try:
-        res = requests.get(config.LIBRARY_SEARCH_URL, params=payloads, timeout=5)
+        res = requests.get(config.LIBRARY_SEARCH_URL, params=payloads, timeout=10)
         soup = BeautifulSoup(res.text, "html.parser")
         num_text = soup.find("header").getText().strip()
     except Exception as e:
