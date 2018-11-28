@@ -31,7 +31,7 @@ def search_book(keyword, page, book_type=1):
         "page": page
     }
     try:
-        res = requests.get(config.LIBRARY_SEARCH_URL, params=payloads, timeout=10)
+        res = requests.get(config.LIBRARY_SEARCH_URL, params=payloads, timeout=15)
         soup = BeautifulSoup(res.text, "html.parser")
         num_text = soup.find("header").getText().strip()
     except Exception as e:
@@ -70,7 +70,7 @@ def search_book(keyword, page, book_type=1):
 def get_book_detail(endpoint):
     url = '%s%s' % (config.LIBRARY_HOST, url_decode(endpoint))
     try:
-        res = requests.get(url, timeout=10)
+        res = requests.get(url, timeout=15)
     except Exception as e:
         logger.warning('图书馆检索图书失败，URL:%s，错误信息:%s' % (url, e))
         return {'code': 502, 'msg': '图书馆服务器连接出错，请重试'}
