@@ -45,6 +45,7 @@ def search_book(keyword, page, book_type=1):
         book_info = []
         for book in list_book:
             detail_url = book.find("a")['href']
+            url = url_encode(re.sub(r';jsessionid=\w*', '', detail_url, 1))
             title_text = book.find('span').getText().strip()
 
             # 正则匹配标题，去除列号
@@ -60,7 +61,7 @@ def search_book(keyword, page, book_type=1):
                 'author': author.replace("作者：", ""),
                 'publishing_house': publishing_house.replace("出版社：", ""),
                 'index': index.replace("索书号：", ""),
-                'url': url_encode(detail_url)
+                'url': url
             }
             book_info.append(data)
         data = {'rows': book_info, 'total': num}
@@ -77,6 +78,9 @@ def get_book_detail(endpoint):
     else:
         book_info = []
         soup = BeautifulSoup(res.text, "html.parser")
+        if not soup.body:
+            logger.warning('图书馆检索图书失败, 页面出错，URL:%s，错误信息:%s' % (url, res.text))
+            return {'code': 502, 'msg': '页面出错，请返回后重试'}
         article = soup.body.find('article')
         catalog = article.find(class_="catalog").find_all('p')
         catalog_list = []
