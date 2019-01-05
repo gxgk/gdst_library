@@ -82,7 +82,7 @@ def get_book_detail(endpoint):
             logger.warning('图书馆检索图书失败, 页面出错，URL:%s，错误信息:%s' % (url, res.text))
             return {'code': 502, 'msg': '页面出错，请返回后重试'}
         article = soup.body.find('article')
-        book_title = article.find('header').getText()
+        book_title = article.find('header').getText().strip()
         catalog = article.find(class_="catalog").find_all('p')
         catalog_list = []
         for index in catalog:
