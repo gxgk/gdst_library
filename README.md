@@ -1,4 +1,4 @@
-# 广科图书馆爬虫项目
+# 广科图书馆爬虫项目 [![Build Status](https://travis-ci.com/gxgk/gdst_library.svg?branch=master)](https://travis-ci.com/gxgk/gdst_library)
 
 最小Flask服务器，提供广科图书馆图书爬虫，并作为项目演示使用
 
