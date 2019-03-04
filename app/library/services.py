@@ -43,6 +43,8 @@ def search_book(keyword, page, book_type=1):
         num = re.search(pattern, num_text, flags=0).group(1)
         list_book = soup.find_all("li")
         book_info = []
+        if len(list_book) == 0:
+            return {'code': 404, 'msg': '找不到该书籍，可能图书馆没有该藏书'}
         for book in list_book:
             detail_url = book.find("a")['href']
             url = url_encode(re.sub(r';jsessionid=\w*', '', detail_url, 1))
