@@ -11,4 +11,4 @@ services:
     volumes:
       - .:/var/www/gdst_library
     network_mode: bridge
-
+    restart: always
